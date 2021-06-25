@@ -1,0 +1,7 @@
+OLD_PASSWORD = ''
+NEW_PASSWORD = ''
+USERS_TAB = '/html/body/aside/nav/ul/a[1]'
+USER_PROFILE = '/html/body/main/table/tbody/tr/td[3]/div/div[1]/a'
+UPDATE_PASSWORD_BTN = '/html/body/main/form/div[5]/div[2]/button'
+FIND_USER = '/html/body/main/div[2]/div[2]/form/label/input'
+EYE_PASSWORD = '/html/body/main/form/div[3]/div[2]/div/img'
