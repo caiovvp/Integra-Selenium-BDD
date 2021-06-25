@@ -2,7 +2,8 @@
 
     Scenario: When the user changes password successfully
       Given that I am logged in Integra
-      When enters the users page
+      And enter the users page
+      When type different passwords
       And changes the old password
       """
           {
