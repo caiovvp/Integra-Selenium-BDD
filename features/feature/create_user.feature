@@ -1,9 +1,9 @@
     Feature: Create user inside Integra
 
-      Background:
-        Given that I am logged in Integra
-        And enter the users page
-        And click on the add new user button
+        Scenario: Go to the add new user page
+          Given that I am logged in Integra
+          And enter the users page
+          And click on the add new user button
 
         Scenario: Type existent username
           When type an username that is already registered
@@ -15,15 +15,15 @@
           }
           """
 
-          Scenario: Type existent email
-          When type an email that is already registered
-          Then show message saying
-          """
-          {
-          "message": "Existe um usuário com este email",
-          "web_ele": "/html/body/main/form/div[4]/div/div[2]"
-          }
-          """
+        Scenario: Type existent email
+        When type an email that is already registered
+        Then show message saying
+        """
+        {
+        "message": "Existe um usuário com este email",
+        "web_ele": "/html/body/main/form/div[4]/div/div[2]"
+        }
+        """
 
         Scenario: User successfully created
           When type all valid infos
@@ -40,7 +40,9 @@
           Given enter the users page
           Then find new user in users page
           When delete new user successfully
-          And try to log in with deleted user
+
+        Scenario: Log in with deleted user
+          When try to log in with deleted user
           Then show message saying
           """
           {
