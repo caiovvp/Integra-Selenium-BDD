@@ -1,26 +1,30 @@
-    Feature: Login on the website
+  Feature: Login on the website
+
+    Background:
+      Given that I am on the login page
 
       Scenario: Account exists
-        Given that I am on the login page
-        When type valid credentials
+        When type credentials
           """
             {
-              "user": "integra_tester",
-              "password": "Senha@123"
+              "user": ["integra_tester"],
+              "password": ["Senha@123"]
             }
           """
         Then the dashboard page should open
 
-      Scenario: Account doesnt exist
-        Given that I am on the login page
-        When type invalid credentials
+      Scenario: Account doesn't exist
+        When type credentials
           """
             {
-              "user": ["integra_tester", "integra_xxx"],
-              "password": ["Senha@123xxx", "Senha@123"]
+              "user": ["integra_tester", "integra_xxx", "integra_xxx"],
+              "password": ["Senha@123xxx", "Senha@123", "integra_xxx"]
             }
           """
-        Then the website should show an error message saying invalid user or password
+        Then show message saying
           """
-            {"msg_error": "Nome de usuário ou senha incorretos"}
+            {
+              "message": "Nome de usuário ou senha incorretos",
+              "web_ele": "/html/body/div/div/div[1]/div/form/div[2]"
+            }
           """

@@ -31,7 +31,7 @@
           """
             {
               "message": "Usuário adicionado com sucesso",
-              "web_ele": "/html/body/div[1]/div/div/div/h4"
+              "web_ele": "/html/body/div/div/div/div/h4"
             }
           """
           And find new user in users page

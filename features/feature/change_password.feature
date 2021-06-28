@@ -1,6 +1,5 @@
   Feature: Change Account Password being logged in
 
-
     Scenario: Go to the user profile
       Given that I am logged in Integra
       And enter the user profile
