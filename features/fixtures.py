@@ -1,8 +1,7 @@
 import time
 
 from selenium.webdriver import *
-
-from features.environment_context import ADD_USER
+from selenium.webdriver.common.keys import Keys
 
 
 # FUNCTION THAT INSTANCES THAT THE BROWSER IS CHROME AND THAT IT QUITS ONCE THE TEST IS OVER
@@ -34,9 +33,8 @@ def fill_form(context, user, email):
     context.browser.find_element_by_id('username').send_keys(user)
     context.browser.find_element_by_id('name').send_keys('Nome Sobrenome')
     context.browser.find_element_by_id('email').send_keys(email)
-    context.browser.find_element_by_id('password').send_keys('Senhas@123')
     context.browser.find_element_by_id('active').click()
-    context.browser.find_element_by_xpath(ADD_USER).click()
+    context.browser.find_element_by_id('password').send_keys('Senhas@123' + Keys.ENTER)
     time.sleep(.5)
 
 

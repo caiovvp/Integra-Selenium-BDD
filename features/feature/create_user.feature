@@ -10,8 +10,8 @@
           Then show message saying
           """
           {
-          "message": "DBException",
-          "web_ele": "/html/body/div[1]/h1"
+          "message": "Existe um usuário com este username",
+          "web_ele": "/html/body/main/form/div[4]/div/div[2]"
           }
           """
 
@@ -20,12 +20,11 @@
           Then show message saying
           """
           {
-          "message": "DBException",
-          "web_ele": "/html/body/div[1]/h1"
+          "message": "Existe um usuário com este email",
+          "web_ele": "/html/body/main/form/div[4]/div/div[2]"
           }
           """
 
-        @kik
         Scenario: User successfully created
           When type all valid infos
           Then show message saying
@@ -37,7 +36,6 @@
           """
           And find new user in users page
 
-        @kik
         Scenario: Delete new user
           Given enter the users page
           Then find new user in users page
