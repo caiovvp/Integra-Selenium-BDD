@@ -12,6 +12,11 @@ from features.contexts.login_context import LOGIN_BTN
 from features.fixtures import fill_form, confirm_message
 
 
+@given('enter the users page')
+def step_impl(context):
+    context.browser.find_element_by_xpath(USERS_TAB).click()
+
+
 @given('click on the add new user button')
 def step_impl(context):
     context.browser.find_element_by_xpath(CREATE_USER_BTN).click()

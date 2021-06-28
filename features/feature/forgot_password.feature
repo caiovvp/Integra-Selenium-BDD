@@ -8,7 +8,7 @@
         And click on the request new password button
         Then a message saying that the verification Code was sent is shown
           """
-          {"msg_valid_email": "Código enviado. Verifique seu e-mail."}
+            {"msg_valid_email": "Código enviado. Verifique seu e-mail."}
           """
 
       Scenario: Account email doesnt exist
@@ -16,5 +16,5 @@
         And click on the request new password button
         Then a message saying that no account is linked to that email is shown
           """
-          {"msg_invalid_email": "Não há nenhum usuário com esse email"}
+            {"msg_invalid_email": "Não há nenhum usuário com esse email"}
           """
