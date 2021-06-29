@@ -1,7 +1,7 @@
     Feature: Create user inside Integra
 
         Scenario: Go to the add new user page
-          Given that I am logged in Integra
+          Given user is logged in Integra
           And enter the users page
           And click on the add new user button
 

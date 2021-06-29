@@ -4,7 +4,7 @@ from behave import *
 from features.contexts.login_context import *
 
 
-@given('that I am on the login page')
+@given('user is on login page')
 def step_impl(context):
     context.browser.get(LOGIN_URL)
     assert context.browser.current_url == LOGIN_URL

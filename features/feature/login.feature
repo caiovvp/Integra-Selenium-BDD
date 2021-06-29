@@ -1,7 +1,7 @@
   Feature: Login on the website
 
     Background:
-      Given that I am on the login page
+      Given user is on login page
 
       Scenario: Account exists
         When type credentials

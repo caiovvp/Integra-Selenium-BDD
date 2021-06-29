@@ -10,7 +10,7 @@ from features.contexts.change_password_ctx import *
 from features.contexts.login_context import LOGIN_URL, LOGIN_BTN, DASHBOARD_URL
 
 
-@given('that I am logged in Integra')
+@given('user is logged in Integra')
 def step_impl(context):
     context.browser.get(LOGIN_URL)
     context.browser.find_element_by_id('username').send_keys('integra_tester')

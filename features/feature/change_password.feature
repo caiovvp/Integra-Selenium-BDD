@@ -1,7 +1,7 @@
   Feature: Change Account Password being logged in
 
     Scenario: Go to the user profile
-      Given that I am logged in Integra
+      Given user is logged in Integra
       And enter the user profile
 
     Scenario: Password shorter than 8 characters
