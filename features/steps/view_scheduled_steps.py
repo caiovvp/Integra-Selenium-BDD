@@ -1,12 +1,11 @@
-import time
 from behave import *
 
-from features.contexts.view_scheduled_ctx import VIEW_SCHEDULE_BTN, SCHEDULE_SELECT, SCHEDULE_TITLE
+from features.contexts.view_scheduled_ctx import VIEW_SCHEDULE_BTN, SCHEDULE_SELECT, SCHEDULE_TITLE, SCHEDULE_TAB
 
 
 @when('go to the Schedules tab')
 def step_impl(context):
-    context.browser.find_element_by_xpath('/html/body/aside/nav/ul/a[3]').click()
+    context.browser.find_element_by_xpath(SCHEDULE_TAB).click()
 
 
 @when('select each schedule and click on the button')
