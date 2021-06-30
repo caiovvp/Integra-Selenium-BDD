@@ -1,6 +1,6 @@
 from behave import *
 
-from features.contexts.view_scheduled_ctx import VIEW_SCHEDULE_BTN, SCHEDULE_SELECT, SCHEDULE_TITLE, SCHEDULE_TAB
+from features.contexts.view_scheduled_ctx import VIEW_SCHEDULE_BTN, SCHEDULE_SELECT, SCHEDULE_TAB, SCHEDULE_TITLE
 
 
 @when('go to the Schedules tab')

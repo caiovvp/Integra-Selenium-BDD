@@ -12,4 +12,4 @@
         Scenario: View executions of each process
           When open list of processes
           And select a process of the list
-          Then show a list of all execution on that process
+          Then show a list of all executions on that process
