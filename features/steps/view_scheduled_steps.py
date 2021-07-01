@@ -1,27 +1,31 @@
 from behave import *
 
-from features.contexts.view_scheduled_ctx import VIEW_SCHEDULE_BTN, SCHEDULE_SELECT, SCHEDULE_TAB, SCHEDULE_TITLE
+from features.contexts.view_executions_ctx import OPEN_LIST_BTN, SHOW_LIST_BTN
+from features.contexts.view_scheduled_ctx import *
+from features.fixtures import find_by_link, get_list
 
 
 @when('go to the Schedules tab')
 def step_impl(context):
-    context.browser.find_element_by_xpath(SCHEDULE_TAB).click()
+    find_by_link(context, '/integra/schedule/').click()
 
 
-@when('select each schedule and click on the button')
-def step_impl(context):
-    form = context.browser.find_element_by_xpath(SCHEDULE_SELECT)
-    options = form.find_elements_by_tag_name('option')
-    for i in options:
-        form.click()
-        options[0].click()
-        context.browser.find_element_by_xpath(VIEW_SCHEDULE_BTN)
-        schedule_name = context.browser.find_element_by_xpath(SCHEDULE_TITLE)
-        option_name = options[0].text
-        assert schedule_name.text == option_name
+@when('select a schedule of the list')
+def open_list(context):
+    context.browser.find_element_by_xpath(OPEN_LIST_BTN).click()
 
 
 @then('show the list of processes found in that schedule')
 def step_impl(context):
-    # Validation is already being done on the last step
-    pass
+    i = 0
+    for li in get_list(context):
+        if i >= 1:
+            open_list(context)
+            li = (get_list(context))[i]
+        schedule_name = li.find_element_by_class_name('text').text
+        li.click()
+        context.browser.find_element_by_xpath(SHOW_LIST_BTN).click()
+        schedule_title = context.browser.find_element_by_xpath(SCHEDULE_TITLE).text
+        assert schedule_name in schedule_title
+        i += 1
+

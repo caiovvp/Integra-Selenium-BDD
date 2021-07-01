@@ -1,7 +1,7 @@
-import time
 from json import loads
 from behave import *
-from features.contexts.login_context import *
+
+from features.contexts.login_ctx import *
 
 
 @given('user is on login page')

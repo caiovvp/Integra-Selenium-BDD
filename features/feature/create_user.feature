@@ -30,7 +30,7 @@
           Then show message saying
           """
             {
-              "message": "Usuário adicionado com sucesso",
+              "message": "Usuário adicionado com sucesso!",
               "web_ele": "/html/body/div/div/div/div/h4"
             }
           """

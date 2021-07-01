@@ -1,14 +1,15 @@
 import time
 from json import loads
-
 from behave import *
+from selenium import webdriver
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from features.contexts.create_user_ctx import *
-from features.contexts.login_context import LOGIN_BTN
+from features.contexts.login_ctx import LOGIN_BTN
 from features.fixtures import fill_form, confirm_message
 
 
@@ -45,9 +46,10 @@ def step_impl(context):
 
 @then('find new user in users page')
 def step_impl(context):
-    WebDriverWait(context.browser, 10).until(EC.element_to_be_clickable((By.NAME, "busca"))) \
-        .send_keys('Nome Sobrenome')
-    context.browser.find_element_by_name('busca').send_keys(Keys.ENTER)
+    webdriver.ActionChains(context.browser).send_keys(Keys.ESCAPE).perform()
+    context.browser.find_element_by_xpath(USERS_TAB).click()
+    WebDriverWait(context.browser, 5).until(EC.element_to_be_clickable((By.NAME, "busca"))) \
+        .send_keys('Nome Sobrenome' + Keys.ENTER)
     users_box = context.browser.find_element_by_xpath(USERS_BOX)
     assert 'Nome Sobrenome' in users_box.text
 
@@ -65,4 +67,3 @@ def step_impl(context):
     context.browser.find_element_by_id('username').send_keys('new_integra_user')
     context.browser.find_element_by_id('password').send_keys('Senhas@123')
     context.browser.find_element_by_xpath(LOGIN_BTN).click()
-

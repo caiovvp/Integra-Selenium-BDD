@@ -1,8 +1,7 @@
 from behave import *
 
-from features.contexts.view_executions_ctx import EXECUTIONS_TAB, ALL_PROCESSES, PROCESS_TITLE, OPEN_LIST_BTN, \
-    UL_OPTIONS, SHOW_EXECUTIONS_BTN, EXECUTION_TITLE
-from features.fixtures import find_by_link
+from features.contexts.view_executions_ctx import *
+from features.fixtures import find_by_link, get_list
 
 
 @given('go to the Executions tab')
@@ -37,6 +36,7 @@ def step_impl(context):
     assert max_length == 0
 
 
+@then('show only processes according with that filter')
 def get_executions_length(context):
     executions_div = context.browser.find_element_by_xpath('/html/body/main/div[2]/div[1]/div[2]/div')
     executions_empty = executions_div.find_elements_by_class_name('d-none')
@@ -44,33 +44,21 @@ def get_executions_length(context):
     return executions_length
 
 
-@then('show only processes according with that filter')
-def step_impl(context):
-    # Validation being done on the step before
-    pass
-
-
 @when('select a process of the list')
 def open_list(context):
     context.browser.find_element_by_xpath(OPEN_LIST_BTN).click()
 
 
-def get_executions(context):
-    list_itens = context.browser.find_element_by_xpath(UL_OPTIONS)
-    executions_li = list_itens.find_elements_by_tag_name('li')
-    return executions_li
-
-
 @then('show a list of all executions on that process')
 def step_impl(context):
     i = 0
-    for li in get_executions(context):
+    for li in get_list(context):
         if i >= 1:
             open_list(context)
-            li = (get_executions(context))[i]
+            li = (get_list(context))[i]
         execution_name = li.find_element_by_class_name('text').text
         li.click()
-        context.browser.find_element_by_xpath(SHOW_EXECUTIONS_BTN).click()
+        context.browser.find_element_by_xpath(SHOW_LIST_BTN).click()
         execution_title = context.browser.find_element_by_xpath(EXECUTION_TITLE).text
         assert execution_name in execution_title
         i += 1

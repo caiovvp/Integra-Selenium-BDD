@@ -1,6 +1,6 @@
  Feature: Delete user
 
-    Scenario: : Create new user to be deleted
+    Scenario: Create new user to be deleted
       Given user is logged in Integra
       And enter the users page
       And click on the add new user button
