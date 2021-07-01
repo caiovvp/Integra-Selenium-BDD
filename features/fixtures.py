@@ -42,3 +42,10 @@ def fill_form(context, user, email):
 def confirm_message(context, web_ele, message):
     box = context.browser.find_element_by_xpath(web_ele)
     assert message in box.text
+
+
+def find_by_link(context, link):
+    anchors_list = context.browser.find_elements_by_tag_name('a')
+    for element in anchors_list:
+        if link in element.get_attribute('href'):
+            return element
