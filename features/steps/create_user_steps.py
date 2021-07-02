@@ -57,8 +57,8 @@ def step_impl(context):
 @when('delete new user successfully')
 def step_impl(context):
     context.browser.find_element_by_xpath(DELETE_USER_BTN).click()
-    time.sleep(.5)
-    context.browser.find_element_by_xpath(CONFIRM_DELETION).click()
+    WebDriverWait(context.browser, 5).until(EC.element_to_be_clickable((By.XPATH, CONFIRM_DELETION)))\
+        .click()
     context.browser.find_element_by_class_name('icon-logout').click()
 
 
