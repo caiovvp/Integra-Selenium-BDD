@@ -44,31 +44,24 @@ def get_integrations(context, integration=0):
         for integra in integration_options:
             if integra.get_attribute('selected'):
                 return integra
-        raise RuntimeError('deu ruim')
 
 
-@then('show all the integrations information')
-def step_impl(context):
-    check_integrations_info(context, INTEGRATIONS_INFO_1)
-    check_integrations_info(context, INTEGRATIONS_INFO_2)
+# def step_impl(context):
+#     check_integrations_info(context, INTEGRATIONS_INFO_1)
+#     check_integrations_info(context, INTEGRATIONS_INFO_2)
 
 
-def check_integrations_info(context, integration_info):
-    for i in range(2):
-        info_div = context.browser.find_element_by_xpath(integration_info)
-        info_list = info_div.find_elements_by_tag_name('h3')
-        for info in info_list:
-            assert info.text != ''
+@then('show integrations information of the {div}')
+def check_integrations_info(context, div):
+    info_div = context.browser.find_element_by_xpath(div)
+    info_list = info_div.find_elements_by_tag_name('h3')
+    for info in info_list:
+        assert info.text != ''
 
 
-@then('show the integrations graphic')
+@then('show integrations graphic')
 def assert_canvas_present(context):
     # ASSERTS ALL CANVAS ELEMENTS ARE PRESENT AND VISIBLE IN THE PAGE (INCLUDING THE GRAPHIC)
     canvas_list = context.browser.find_elements_by_tag_name('canvas')
     for canvas in canvas_list:
         WebDriverWait(context.browser, 5).until(EC.visibility_of(canvas))
-
-
-@then('reload the page')
-def step_impl(context):
-    pass
