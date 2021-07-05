@@ -14,5 +14,3 @@
         Scenario: Test if filter is working
           When choose a filter
           Then show only processes according with that filter
-
-

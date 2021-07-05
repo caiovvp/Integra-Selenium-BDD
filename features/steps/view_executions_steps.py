@@ -24,15 +24,17 @@ def step_impl(context):
 
 @when('choose a filter')
 def step_impl(context):
-    select_filter = context.browser.find_element_by_id('filter-by-status')
-    select_options = select_filter.find_elements_by_tag_name('option')
+    open_select = context.browser.find_element_by_xpath(FILTER_BTN)
+    open_select.click()
+    select_list = context.browser.find_element_by_id('bs-select-1')
+    select_options = select_list.find_elements_by_tag_name('li')
     all_length = get_executions_length(context)
     max_length = all_length * 2
     for i in select_options:
-        select_filter.click()
         i.click()
         executions_length = get_executions_length(context)
         max_length -= executions_length
+        open_select.click()
     assert max_length == 0
 
 

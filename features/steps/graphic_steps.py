@@ -9,11 +9,15 @@ from selenium.webdriver.support import expected_conditions as EC
 
 @when('time filter is chosen')
 def step_impl(context):
-    period_select = context.browser.find_element_by_name('period')
-    period_options = period_select.find_elements_by_tag_name('option')
-    for period in period_options:
-        period.click()
+    open_period_select = context.browser.find_element_by_xpath(FILTER_BTN)
+    open_period_select.click()
+    select_list = context.browser.find_element_by_id('bs-select-2')
+    select_options = select_list.find_elements_by_tag_name('li')
+    for i in select_options:
+        i.click()
         assert_canvas_present(context)
+        open_period_select.click()
+    open_period_select.click()
 
 
 @when('integration filter is chosen')
@@ -44,11 +48,6 @@ def get_integrations(context, integration=0):
         for integra in integration_options:
             if integra.get_attribute('selected'):
                 return integra
-
-
-# def step_impl(context):
-#     check_integrations_info(context, INTEGRATIONS_INFO_1)
-#     check_integrations_info(context, INTEGRATIONS_INFO_2)
 
 
 @then('show integrations information of the {div}')
