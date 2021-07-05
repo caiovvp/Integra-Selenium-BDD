@@ -1,11 +1,11 @@
   Feature: Change Account Password being logged in
 
     Scenario: Go to the user profile
-      Given that I am logged in Integra
+      Given user is logged in Integra
       And enter the user profile
 
     Scenario: Password shorter than 8 characters
-      When type password
+      When type invalid password
         """
           {"password": "senha"}
         """
@@ -18,7 +18,7 @@
         """
 
     Scenario: Password without numbers
-      When type password
+      When type invalid password
         """
           {"password": "senhalonga"}
         """
@@ -31,7 +31,7 @@
         """
 
     Scenario: Password without capital letters
-      When type password
+      When type invalid password
         """
           {"password": "senha123"}
         """
@@ -44,7 +44,7 @@
         """
 
     Scenario: Password without special character
-      When type password
+      When type invalid password
         """
           {"password": "Senha123"}
         """
@@ -70,7 +70,7 @@
         """
 
     Scenario: Change password successfully
-      When type password
+      When type correct password
         """
           {"password": "Senha@123"}
         """

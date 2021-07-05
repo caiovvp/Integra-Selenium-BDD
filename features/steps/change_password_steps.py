@@ -1,7 +1,6 @@
 import time
 from json import loads
 from behave import *
-from selenium import webdriver
 
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -42,7 +41,7 @@ def step_impl(context):
 
 @then('log out of Integra')
 def step_impl(context):
-    webdriver.ActionChains(context.browser).send_keys(Keys.ESCAPE).perform()
+    WebDriverWait(context.browser, 10).until(EC.url_to_be(DASHBOARD_URL))
     context.browser.find_element_by_class_name('icon-logout').click()
 
 

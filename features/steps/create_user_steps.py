@@ -1,8 +1,7 @@
 import time
 from json import loads
-from behave import *
 
-from selenium import webdriver
+from behave import *
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
@@ -46,8 +45,6 @@ def step_impl(context):
 
 @then('find new user in users page')
 def step_impl(context):
-    webdriver.ActionChains(context.browser).send_keys(Keys.ESCAPE).perform()
-    context.browser.find_element_by_xpath(USERS_TAB).click()
     WebDriverWait(context.browser, 10).until(EC.element_to_be_clickable((By.NAME, "busca"))) \
         .send_keys('Nome Sobrenome')
     context.browser.find_element_by_name('busca').send_keys(Keys.ENTER)
