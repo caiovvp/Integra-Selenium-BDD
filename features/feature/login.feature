@@ -17,8 +17,8 @@
         When type credentials
           """
             {
-              "user": ["integra_tester", "integra_xxx", "integra_xxx"],
-              "password": ["Senha@123xxx", "Senha@123", "integra_xxx"]
+              "user": ["integra_tester", "integra_xxx"],
+              "password": ["Senha@123xxx", "Senha@123"]
             }
           """
         Then show message saying
