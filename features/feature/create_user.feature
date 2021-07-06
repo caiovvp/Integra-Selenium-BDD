@@ -39,4 +39,4 @@
         Scenario: Delete new user
           Given enter the users page
           Then find new user in users page
-          When delete new user successfully
+          And delete new user successfully

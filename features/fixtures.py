@@ -6,6 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver import DesiredCapabilities, Remote
 
 from features.environment_context import *
 
@@ -13,7 +14,8 @@ from features.environment_context import *
 # FUNCTION THAT INSTANCES THAT THE BROWSER IS CHROME AND THAT IT QUITS ONCE THE TEST IS OVER
 def browser_chrome(context):
     # -- BEHAVE-FIXTURE: Similar to @contextlib.contextmanager
-    context.browser = Chrome(executable_path='C:/Selenium WebDriver/chromedriver.exe')
+    capability = DesiredCapabilities.FIREFOX
+    context.browser = Remote('http://srv01.connect.com.vc:4444/wd/hub', capability)
     yield context.browser
     # -- CLEANUP-FIXTURE PART:
     context.browser.quit()
@@ -40,7 +42,7 @@ def fill_form(context, user, email):
     context.browser.find_element_by_id('email').send_keys(email)
     context.browser.find_element_by_id('active').click()
     context.browser.find_element_by_id('password').send_keys('Senhas@123' + Keys.ENTER)
-    time.sleep(.5)
+    time.sleep(1)
 
 
 # CONFIRM IF MESSAGE IS INSIDE THE TEXT OF A WEB ELEMENT
@@ -72,7 +74,5 @@ def fill_passwords(context):
 
 def submit_passwords(context):
     context.browser.find_element_by_id('confirm').send_keys(Keys.ENTER)
+    time.sleep(0.5)
     WebDriverWait(context.browser, 5).until(EC.presence_of_element_located((By.CLASS_NAME, "notification-danger")))
-
-
-

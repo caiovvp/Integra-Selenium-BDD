@@ -15,7 +15,7 @@
 
     Scenario: Delete new user successfully
       Then find new user in users page
-      When delete new user successfully
+      And delete new user successfully
 
     Scenario: Log in with deleted user
       When try to log in with deleted user

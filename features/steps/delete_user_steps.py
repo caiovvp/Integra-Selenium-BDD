@@ -1,3 +1,5 @@
+import time
+
 from behave import *
 from selenium import webdriver
 
@@ -14,14 +16,16 @@ from features.contexts.login_ctx import LOGIN_BTN
 @then('find new user in users page')
 def step_impl(context):
     webdriver.ActionChains(context.browser).send_keys(Keys.ESCAPE).perform()
+    time.sleep(.5)
     context.browser.find_element_by_xpath(USERS_TAB).click()
     WebDriverWait(context.browser, 5).until(EC.element_to_be_clickable((By.NAME, "busca"))) \
         .send_keys('Nome Sobrenome' + Keys.ENTER)
+    time.sleep(.5)
     users_box = context.browser.find_element_by_xpath(USERS_BOX)
     assert 'Nome Sobrenome' in users_box.text
 
 
-@when('delete new user successfully')
+@then('delete new user successfully')
 def step_impl(context):
     context.browser.find_element_by_xpath(DELETE_USER_BTN).click()
     WebDriverWait(context.browser, 5).until(EC.element_to_be_clickable((By.XPATH, CONFIRM_DELETION)))\

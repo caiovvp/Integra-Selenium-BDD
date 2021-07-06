@@ -1,3 +1,4 @@
+import time
 from json import loads
 from behave import *
 
@@ -48,8 +49,11 @@ def step_impl(context):
 
 @then('log out of Integra')
 def step_impl(context):
+    logout_button = find_by_link(context, '/logout')
+    time.sleep(.5)
     webdriver.ActionChains(context.browser).send_keys(Keys.ESCAPE).perform()
-    find_by_link(context, '/logout').click()
+    WebDriverWait(context.browser, 5).until(EC.invisibility_of_element_located((By.CLASS_NAME, "m-0")))
+    logout_button.click()
 
 
 @when('try to log in with the new password')
